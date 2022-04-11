@@ -1,0 +1,72 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Open+Sans:wght@400;600&display=swap');
+
+$Inter: 'Inter', sans-serif;
+$Open-Sans: 'Open Sans', sans-serif;
+
+// Colors
+$bg: #404040;
+$cyan: #42a7a1;
+$white: #ffffffff;
+
+//Animations
+
+@keyframes ease-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes open {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(45deg);
+    }
+}
+
+@keyframes open-after {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}
+
+@keyframes close {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(0);
+    }
+}
+
+@keyframes close-after {
+    from {
+        transform: rotate(90deg);
+    }
+    to {
+        transform: rotate(0);
+        transform: translateY(0.5rem);
+    }
+}
+
+//RWD 450px, 700px, 1050px, 1400px
+$breakpoints: (
+    'sm': '28.125rem',
+    'md': '43.75rem',
+    'lg': '65.625rem',
+    'xl': '87.5rem',
+);
+
+@mixin breakpointMax($screen-size) {
+    @media (max-width: map-get($breakpoints, $screen-size)) {
+        @content;
+    }
+}

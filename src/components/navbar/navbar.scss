@@ -1,0 +1,121 @@
+@import '../../index.scss';
+
+.navbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    &-logo {
+        margin: 1.5625rem 0 0 5rem;
+
+        @include breakpointMax(md) {
+            width: 6rem;
+            margin-left: 2.5rem;
+        }
+    }
+
+    &-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: $cyan;
+        border-radius: 0px 0px 0px 1.4rem;
+        padding: 2rem 1.3rem 1.2rem 1.3rem;
+
+        @include breakpointMax(md) {
+            padding: 2rem 0.7rem 0.7rem;
+        }
+
+        &--open {
+            animation-name: ease-in;
+            animation-duration: 500ms;
+        }
+
+        &__hamburger {
+            width: 1.65rem;
+            height: 0.1875rem;
+            border-radius: 4rem;
+            background: $white;
+            cursor: pointer;
+            position: relative;
+
+            animation-name: close;
+            animation-duration: 300ms;
+
+            &::before,
+            &::after {
+                width: 1.65rem;
+                height: 0.1875rem;
+                border-radius: 4rem;
+                background: $white;
+                content: '';
+                position: absolute;
+            }
+
+            &::before {
+                transform: translateY(-0.5rem);
+            }
+
+            &::after {
+                transform: translateY(0.5rem);
+                animation-name: close-after;
+                animation-duration: 300ms;
+                animation-fill-mode: forwards;
+            }
+
+            &--open {
+                animation-name: open;
+                animation-duration: 300ms;
+                animation-fill-mode: forwards;
+
+                &::before {
+                    display: none;
+                }
+
+                &::after {
+                    animation-name: open-after;
+                    animation-duration: 300ms;
+                    animation-fill-mode: forwards;
+                }
+            }
+
+            &_container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 1rem;
+                cursor: pointer;
+
+                &--close {
+                    margin: 2rem 4.3rem 0;
+
+                    @include breakpointMax(md) {
+                        margin-right: 3.7rem;
+                    }
+                }
+            }
+        }
+
+        &__container {
+            margin-top: 1.5625rem;
+        }
+
+        &__item {
+            display: grid;
+            grid-template-columns: 2rem 1fr;
+            align-items: center;
+            padding: 0.375rem;
+
+            & img {
+                margin: 0 auto;
+            }
+
+            & a {
+                color: $white;
+                font-size: 1rem;
+                font-family: $Inter;
+                font-weight: 400;
+            }
+        }
+    }
+}

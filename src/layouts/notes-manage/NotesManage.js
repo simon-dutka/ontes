@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import './addNote.scss';
+import './notesManage.scss';
 
 // Notes data
 import { Note } from '../../components';
 
-const AddNote = () => {
+const NotesManage = () => {
     // State for toggling add note element
     const [open, setOpen] = useState(false);
 
@@ -41,6 +41,11 @@ const AddNote = () => {
     // An array with all notes
     const [allNotes, setAllNotes] = useState([]);
 
+    // ID's for objects in an allNotes array
+    allNotes.forEach((item, i) => {
+        item.id = i + 1;
+    });
+
     // Adding new note to an array
     const addNote = () => {
         const note = {
@@ -57,6 +62,12 @@ const AddNote = () => {
             setTitle('');
             setText('');
         }
+    };
+
+    // Deleting note using ID
+    const deleteNote = (id) => {
+        const deletedNote = allNotes.filter((element) => element.id !== id + 1);
+        setAllNotes(deletedNote);
     };
 
     return (
@@ -90,24 +101,25 @@ const AddNote = () => {
                             Submit
                         </button>
                     </div>
-
-                    <div className='notes-container'>
-                        {allNotes.map((item, index) => (
-                            <Note
-                                title={item.title}
-                                text={item.text}
-                                key={index}
-                            />
-                        ))}
-                    </div>
                 </>
             ) : (
                 <div className='add-note'>
                     <TogglerTag />
                 </div>
             )}
+
+            <div className='notes-container'>
+                {allNotes.map((item, index) => (
+                    <Note
+                        title={item.title}
+                        text={item.text}
+                        key={index}
+                        deleteItem={() => deleteNote(index)}
+                    />
+                ))}
+            </div>
         </>
     );
 };
 
-export default AddNote;
+export default NotesManage;

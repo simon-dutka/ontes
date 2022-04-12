@@ -2,12 +2,12 @@ import React from 'react';
 import './content.scss';
 
 // Components
-import AddNote from '../add-note/AddNote.js';
+import NotesManage from '../notes-manage/NotesManage';
 
 const Content = () => {
     return (
         <div className='content'>
-            <AddNote />
+            <NotesManage />
         </div>
     );
 };

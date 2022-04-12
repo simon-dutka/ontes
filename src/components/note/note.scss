@@ -35,6 +35,10 @@
         background: $white;
 
         padding: 1rem 0.8rem 3.125rem 0.8rem;
+
+        &--open {
+            max-height: 100%;
+        }
     }
 
     &__btn {
@@ -52,6 +56,10 @@
         border-radius: 32px;
 
         padding: 0.6rem 1.7rem;
+
+        &:hover {
+            padding: 0.65rem 1.75rem;
+        }
 
         &--delete {
             background: $red;

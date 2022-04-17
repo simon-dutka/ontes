@@ -46,7 +46,7 @@ const NotesManage = () => {
         item.id = i + 1;
     });
 
-    // Adding new note to an array
+    // Add new note to an array
     const addNote = () => {
         const note = {
             title: title,
@@ -64,10 +64,25 @@ const NotesManage = () => {
         }
     };
 
-    // Deleting note using ID
+    // An array with deleted notes
+    const [deletedNotes, setDeletedNotes] = useState([]);
+
     const deleteNote = (id) => {
-        const deletedNote = allNotes.filter((element) => element.id !== id + 1);
-        setAllNotes(deletedNote);
+        const deletedNote = allNotes.filter((element) => element.id == id + 1);
+
+        // Move note to deletedNotes
+        deletedNote.forEach(function (element) {
+            deletedNotes.includes(element)
+                ? setDeletedNotes([...deletedNotes])
+                : setDeletedNotes([...deletedNotes, element]);
+        });
+
+        // Delete note from allNotes
+        const remainingNotes = allNotes.filter(
+            (element) => element.id !== id + 1
+        );
+
+        setAllNotes(remainingNotes);
     };
 
     return (
